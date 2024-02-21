@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto Mono", monospace;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main .image-container {
+  padding: 10px;
+}
+
+.main .image-container .image {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main .image-container .image img {
+  width: 170px;
+  align-items: center;
+}
+
+ h1 {
+  color: #00bcd4;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 40px;
+  animation-name: muovi;
+  position: relative;
+  animation-duration: 4s;
+}
+@keyframes muovi {
+  0%   { left:0px; top:0px;}
+  25%  { left:200px; top:0px; rotate : 180deg;}
+  50%  { left:0; top:0; }
+  75%  { left:-200px; top:0; }
+  100% { left:0px; top:0px; }
+}
+
+ p {
+  color: #324042;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40vw;
+  height: 50px;
+  border-radius: 20px;
+  background: rgb(202 253 255 / 50%);
+}
+
+button {
+
+  background: rgb(202 253 255 / 50%);
+  border: 2px;
+  width: 200px;
+  height: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  padding: 10px;
+  margin: 15px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+
+
+p {
+  color: #aed0d0;
+  font-size: 15px;
+  margin-right: 20px;
+}
+button:hover {
+  background: rgba(95, 135, 136, 0.5);
+  color: #fff;
+  transition: 0.6s;
+  margin: 45px;
+}
+#risultato{
+  width: 45vw;
+  height: 40vh;
+  border: #171e1f;
+  background-color: #aed0d0;
+  border-radius: 5px;
+  text-align: center;
+  display: none;
+}
+h2{
+  color: #324042;
+  font-size: 25px;
+
+  margin: 5px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
