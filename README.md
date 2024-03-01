@@ -1,3 +1,4 @@
+
 # LAURI
 ##### *Creato da Balan Andrei Cristian 5^A INF*
 
@@ -33,16 +34,30 @@ In sintesi, LAURI è un assistente vocale versatile e utile che offre numerosi v
 [![Data-flow-diagram-physical.jpg](https://i.postimg.cc/sg9JPpC7/Data-flow-diagram-physical.jpg)](https://postimg.cc/XrqF4BJY)
 
 ## Specifiche
-**Bottone `Inizia ad ascoltare`** permette di avviare la `speech recognition` che ascolta la richiesta dell'utente fino alla fine e la trasforma in testo scritto.
 
-[![lauri.png](https://i.postimg.cc/DZWjc8gh/lauri.png)](https://postimg.cc/ftNfzWpq)
-**In seguito l'input viene processato e viene fornita una risposta all'utente**
-#### Esempio di output in seguito ad una richiesta di estrazione di un numero casuale tra 1 e 25:
-[![ris-Richiesta.png](https://i.postimg.cc/YCHy6rZG/ris-Richiesta.png)](https://postimg.cc/svTcyrVs)
+### Avvio del Riconoscimento Vocale
+- **Descrizione:** Avvia il riconoscimento vocale per catturare i comandi dell'utente.
+- **Obiettivo:** Consentire all'utente di interagire con LAURI utilizzando la voce come input.
+
+### Elaborazione delle Richieste Vocali
+- **Descrizione:** Interpretare e comprendere la richiesta dell'utente e fornire una risposta o un'azione appropriata.
+- **Condizioni:** L'utente deve aver attivato il riconoscimento vocale e fornito un comando comprensibile.
+- **Obiettivo:** Fornire risposte o azioni coerenti con l'input vocale ricevuto.
+
+### Risposte Interattive
+- **Descrizione:** Dopo aver elaborato la richiesta vocale dell'utente, LAURI fornisce risposte interattive che possono includere informazioni, azioni o richieste di ulteriori dettagli.
+- **Obiettivo:** Comunicare in modo chiaro e interattivo con l'utente, fornendo risposte utili e contestuali.
+
+### Integrazione con Dispositivi e Servizi
+- **Descrizione:** LAURI può essere integrato con vari dispositivi e servizi per ampliare le sue funzionalità, ad esempio controllare dispositivi domestici connessi o accedere a servizi online.
+- **Obiettivo:** Espandere le capacità di LAURI consentendo l'interazione con una vasta gamma di dispositivi e servizi, offrendo agli utenti un'esperienza più completa e personalizzata.
+
+### Accessibilità
+- **Descrizione:** L'utilizzo dell'assistente vocale LAURI è particolarmente vantaggioso per gli utenti con disabilità visive o motorie, consentendo loro di interagire con la tecnologia utilizzando la voce.
+- **Obiettivo:** Offrire un'interfaccia accessibile e inclusiva che consenta a tutti gli utenti di sfruttare le funzionalità di LAURI in modo efficace e senza barriere.
 
 ## Tecnologie utilizzate
 
-### Tecnologie Utilizzate
 
 #### Linguaggi di Programmazione:
 - **HTML, CSS e JavaScript (JS):** Ho utilizzato HTML per la struttura della pagina web, CSS per lo stile e JavaScript per la logica e l'interattività dell'applicazione.
