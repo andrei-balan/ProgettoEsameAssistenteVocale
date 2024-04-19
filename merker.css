@@ -1,0 +1,75 @@
+#icMail{
+  position: absolute;
+    left: 15px;
+    
+    height: 3em;
+}
+
+  #boxapertura{
+    position: absolute;
+    top: 60px;
+    left: 50px;
+    width: 400px;
+    height: 500px;
+    background-color: white;
+    display: none;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    
+    overflow: auto;
+  }
+  #boxCalendario{
+    position: absolute ;
+    top: 60px;
+    left: 50px;
+    width: 800px;
+    height: 500px;
+    background-color: white;
+    display: none;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    
+    overflow: auto;
+  }
+  h3{
+    text-align: center;
+  }
+  .close {
+		cursor: pointer;
+		width: 30px;
+		height: 30px;
+		border-radius: 30px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-style: bold;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #F0F2F5;
+		font-size: 14px;
+    background-color: gray;
+    color: white;
+	}
+  hr{
+    margin: 10px;
+  }
+  #notifica p{
+    padding: 15px;
+    margin: 5px;
+    text-align: left;
+  }
+  .not{
+    background-color: #c2d7f7;
+    border-radius: 10px;
+    border : 1px solid black;
+    width: 350px;
+    height: 50px;
+    padding: 10px;
+    margin: 10px;
+    align-items: center;
+    display: flex;
+    justify-content: left;
+  }

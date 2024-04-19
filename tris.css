@@ -1,0 +1,49 @@
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 2px;
+    
+    
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.cell:hover {
+    background-color: #eee;
+}
+
+
+#coin {
+    
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    
+
+}
+#testacroce{
+    display: none;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+#coin img {
+
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    transition: transform 0.5s ease-in-out;
+    
+}
+
