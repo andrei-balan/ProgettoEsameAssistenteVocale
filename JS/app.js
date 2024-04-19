@@ -10,8 +10,8 @@ let numeroRnd1, numeroRnd2;
 let transcriptp = document.getElementById("transcript");
 let long, lat;
 let CityCoords = [];
-const board = document.getElementById('board');
-let currentPlayer = 'X';
+const board = document.getElementById("board");
+let currentPlayer = "X";
 const cells = [];
 let countdown;
 let calendarContainer = document.getElementById("calendar");
@@ -39,7 +39,7 @@ window.onload = async function () {
   let icMail = document.getElementById("icMail");
   let icCalendar = document.getElementById("icCalendario");
   //alert di sweetalert
-  
+
   // loadVoicesWhenAvailable(() => {
   //   //alert("Voci caricate");
   //   startListeningButton.disabled = false; // Abilita il pulsante quando le voci sono caricate
@@ -56,27 +56,15 @@ window.onload = async function () {
   icCalendar.addEventListener("click", apriCalendario);
   closeNot.addEventListener("click", apriNotifiche);
   closeCal.addEventListener("click", apriCalendario);
-  
+
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();
   const calendar = await generateCalendar(currentMonth, currentYear);
- 
 
-
-
-
- 
   boxCalendario.appendChild(calendar);
-  
- 
 
   addPromemoria("Prova Prom");
   //addPromemoria("Promemoria 2");
-  
-  
-  
-  
-  
 };
 
 startListeningButton.addEventListener("click", () => {
@@ -84,7 +72,6 @@ startListeningButton.addEventListener("click", () => {
   //divRisultato.style.display = "none";
   document.getElementById("tris").style.display = "none";
   risDomanda.innerHTML = "";
-  
 
   document.getElementById("testacroce").style.display = "none";
   document.getElementById("impiccato").style.display = "none";
@@ -119,8 +106,7 @@ async function handleVoiceCommand(command) {
     await respond("Ciao! Come posso aiutarti?");
   } else if (command.includes("come stai")) {
     await respond("Sto bene, grazie!");
-  }
-   else if (command.includes("apri google")) {
+  } else if (command.includes("apri google")) {
     window.open("https://www.google.com", "_blank");
     await respond("Apro Google per te.");
   } else if (command.includes("oggi") && command.includes("che giorno")) {
@@ -130,8 +116,7 @@ async function handleVoiceCommand(command) {
       year: "numeric",
     });
     await respond("Oggi e' il " + date);
-  }
-  else if (
+  } else if (
     command.includes("imposta una sveglia") ||
     (command.includes("timer") && command.includes("imposta"))
   ) {
@@ -168,8 +153,7 @@ async function handleVoiceCommand(command) {
 
       seconds--;
     }, 1000);
-  }
-  else if (command.includes("evento")) {
+  } else if (command.includes("evento")) {
     await aggiungiEvento();
   } else if (
     (command.includes("stop") || command.includes("ferma")) &&
@@ -178,8 +162,7 @@ async function handleVoiceCommand(command) {
     clearInterval(countdown);
     document.getElementById("container").style.display = "none";
     await respond("Timer fermato.");
-  }
-   else if (command.includes("che ore sono")) {
+  } else if (command.includes("che ore sono")) {
     const date = new Date().toLocaleString(undefined, {
       hour: "numeric",
       minute: "numeric",
@@ -264,32 +247,39 @@ async function handleVoiceCommand(command) {
     } else if (command.includes("chiaro")) {
       temaChiaro();
     }
-    
-  }
-  else if(command.includes("giochiamo") || command.includes("giocare") || command.includes("gioco")){
+  } else if (
+    command.includes("giochiamo") ||
+    command.includes("giocare") ||
+    command.includes("gioco")
+  ) {
     // Mostro un alert per permettere di scegliere il gioco
     Swal.fire({
-        title: 'Scegli il gioco',
-        text: 'Quale gioco vuoi giocare?',
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonText: 'Tris',
-        cancelButtonText: 'Impiccato'
+      title: "Scegli il gioco",
+      text: "Quale gioco vuoi giocare?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Tris",
+      cancelButtonText: "Impiccato",
     }).then((result) => {
-        // Se l'utente sceglie il Tris
-        if (result.value) {
-            tris(); // Funzione per avviare il gioco del Tris
-        } 
-        // Se l'utente sceglie l'Impiccato
-        else if (result.dismiss === Swal.DismissReason.cancel) {
-            impiccato(); // Funzione per avviare il gioco dell'Impiccato
-        }
+      // Se l'utente sceglie il Tris
+      if (result.value) {
+        tris(); // Funzione per avviare il gioco del Tris
+      }
+      // Se l'utente sceglie l'Impiccato
+      else if (result.dismiss === Swal.DismissReason.cancel) {
+        impiccato(); // Funzione per avviare il gioco dell'Impiccato
+      }
     });
-}
-  else if ((command.includes("testa") && command.includes("croce")) || (command.includes("lancia") && command.includes("moneta"))){
+  } else if (
+    (command.includes("testa") && command.includes("croce")) ||
+    (command.includes("lancia") && command.includes("moneta"))
+  ) {
     testaCroce();
-  }
-  else if (command.includes("cerca") || command.includes("cercami") || command.includes("trova")){
+  } else if (
+    command.includes("cerca") ||
+    command.includes("cercami") ||
+    command.includes("trova")
+  ) {
     let commands = ["cerca", "cercami", "trova"];
     let search = command;
     commands.forEach((element) => {
@@ -297,15 +287,15 @@ async function handleVoiceCommand(command) {
     });
     search = search.trim();
     window.open("https://www.google.com/search?q=" + search, "_blank");
-
-  }else if(command.includes("mostra") && command.includes("calendario")){
+  } else if (command.includes("mostra") && command.includes("calendario")) {
     document.getElementById("calendar").style.display = "flex";
-  }
-  else if (command.includes("promemoria") && (command.includes("imposta") || command.includes("aggiungi"))){
+  } else if (
+    command.includes("promemoria") &&
+    (command.includes("imposta") || command.includes("aggiungi"))
+  ) {
     let promDaaggiungere = command.split("promemoria")[1].trim();
-    addPromemoria("PROMEMORIA -> "+ promDaaggiungere);
-  }
-   else {
+    addPromemoria("PROMEMORIA -> " + promDaaggiungere);
+  } else {
     await respond("Non ho capito. Riprova.");
   }
 }
@@ -320,8 +310,6 @@ async function respond(message) {
   speech.pitch = 2; // 0 a 2
   speech.lang = "it";
   speech.text = message;
-
-  
 
   speech.onend = function () {
     divRisultato.style.display = "block";
@@ -377,7 +365,6 @@ function temaScuro() {
   document.getElementById("icCalendario").style.color = "white";
   document.getElementById("boxCalendario").style.color = "black";
   document.getElementById("container").style.color = "black";
- 
 }
 function temaChiaro() {
   document.body.style.backgroundColor = "#fefcfe";
@@ -393,97 +380,98 @@ function temaChiaro() {
   document.getElementById("boxCalendario").style.color = "black";
   document.getElementById("container").style.color = "black";
 }
-function tris(){
-  const tris = document.getElementById('tris');
-  divRisultato.style.display = 'block';
-  tris.style.display = 'flex';
+function tris() {
+  const tris = document.getElementById("tris");
+  divRisultato.style.display = "block";
+  tris.style.display = "flex";
   for (let i = 0; i < 9; i++) {
-    const cell = document.createElement('div');
-    cell.classList.add('cell');
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
     cell.dataset.index = i;
-    cell.addEventListener('click', () => cellaCliccata(i));
+    cell.addEventListener("click", () => cellaCliccata(i));
     cells.push(cell);
     board.appendChild(cell);
-}
+  }
 }
 function cellaCliccata(index) {
   if (!cells[index].textContent) {
-      cells[index].textContent = currentPlayer;
-      if (checkWin()) {
-          //alert(`${currentPlayer} ha vinto!`);
-          respond(`${currentPlayer} ha vinto!`);
+    cells[index].textContent = currentPlayer;
+    if (checkWin()) {
+      //alert(`${currentPlayer} ha vinto!`);
+      respond(`${currentPlayer} ha vinto!`);
 
-          resetBoard();
-      } else if (checkDraw()) {
-
-          //alert("È un pareggio!");
-          respond("È un pareggio!");
-          resetBoard();
-      } else {
-          currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-      }
+      resetBoard();
+    } else if (checkDraw()) {
+      //alert("È un pareggio!");
+      respond("È un pareggio!");
+      resetBoard();
+    } else {
+      currentPlayer = currentPlayer === "X" ? "O" : "X";
+    }
   }
 }
 
-
 function checkWin() {
   const winningCombos = [
-      [0, 1, 2], [3, 4, 5], [6, 7, 8], 
-      [0, 3, 6], [1, 4, 7], [2, 5, 8], 
-      [0, 4, 8], [2, 4, 6]              
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
   ];
-  return winningCombos.some(combo => {
-      return combo.every(index => cells[index].textContent === currentPlayer);
+  return winningCombos.some((combo) => {
+    return combo.every((index) => cells[index].textContent === currentPlayer);
   });
 }
-
 
 function checkDraw() {
-  return cells.every(cell => cell.textContent !== '');
+  return cells.every((cell) => cell.textContent !== "");
 }
-
 
 function resetBoard() {
-  cells.forEach(cell => {
-      cell.textContent = '';
+  cells.forEach((cell) => {
+    cell.textContent = "";
   });
-  currentPlayer = 'X';
+  currentPlayer = "X";
 }
 function testaCroce() {
-  const coin = document.getElementById('coin');
-  const testaCroce = document.getElementById('testacroce');
-  divRisultato.style.display = 'block';
-  testaCroce.style.display = 'flex';
-  
-  const images = ['testa.png', 'croce.png']; 
+  const coin = document.getElementById("coin");
+  const testaCroce = document.getElementById("testacroce");
+  divRisultato.style.display = "block";
+  testaCroce.style.display = "flex";
+
+  const images = ["testa.png", "croce.png"];
   const resultIndex = Math.random() < 0.5 ? 0 : 1;
-  const result = resultIndex === 0 ? 'Testa' : 'Croce';
+  const result = resultIndex === 0 ? "Testa" : "Croce";
   const rotateDeg = Math.floor(Math.random() * 360) + 720;
 
-  coin.style.pointerEvents = 'none'; 
+  coin.style.pointerEvents = "none";
   coin.innerHTML = `
-        <img src="${images[resultIndex]}" style="transform: rotateY(0deg);">
-        <img src="${images[resultIndex]}" style="transform: rotateY(${rotateDeg}deg);">
+        <img src="IMG/${images[resultIndex]}" style="transform: rotateY(0deg);">
+        <img src="IMG/${images[resultIndex]}" style="transform: rotateY(${rotateDeg}deg);">
     `;
-  
+
   setTimeout(() => {
-      coin.querySelectorAll('img').forEach(img => {
-          img.style.transform = 'rotateY(1800deg)';
-      });
-      setTimeout(() => {
-          respond(`\u00E8 uscito ${result}`);
-          risDomanda.textContent = `\u00E8 uscito ${result}`;
-          coin.style.pointerEvents = 'auto'; 
-      }, 1500);
+    coin.querySelectorAll("img").forEach((img) => {
+      img.style.transform = "rotateY(1800deg)";
+    });
+    setTimeout(() => {
+      respond(`\u00E8 uscito ${result}`);
+      risDomanda.textContent = `\u00E8 uscito ${result}`;
+      coin.style.pointerEvents = "auto";
+    }, 1500);
   }, 1500);
 }
 
-function addPromemoria(testoProm){
-  let notifica = document.getElementById('notifica');
-  let div = document.createElement('div');
-  div.classList.add('not');
+function addPromemoria(testoProm) {
+  let notifica = document.getElementById("notifica");
+  let div = document.createElement("div");
+  div.classList.add("not");
   //let boxapertura = document.getElementById('boxapertura');
-  let pProm = document.createElement('p');
+  let pProm = document.createElement("p");
   pProm.innerText = testoProm;
   div.appendChild(pProm);
   notifica.appendChild(div);
@@ -523,7 +511,7 @@ function getOreMinutiSecondi(inputString) {
 }
 async function aggiungiEvento() {
   const { value: formValues } = await Swal.fire({
-    title: 'Aggiungi Evento',
+    title: "Aggiungi Evento",
     html:
       '<input id="swal-input1" class="swal2-input" placeholder="Data" type="date" required>' +
       '<input id="swal-input2" class="swal2-input" placeholder="Titolo" required>' +
@@ -531,18 +519,18 @@ async function aggiungiEvento() {
     focusConfirm: false,
     preConfirm: () => {
       return [
-        document.getElementById('swal-input1').value,
-        document.getElementById('swal-input2').value,
-        document.getElementById('swal-input3').value
+        document.getElementById("swal-input1").value,
+        document.getElementById("swal-input2").value,
+        document.getElementById("swal-input3").value,
       ];
-    }
+    },
   });
 
   if (formValues) {
     const [date, title, description] = formValues;
     await addEvent(date, title, description);
     await updateCalendar(); // Aggiorna il calendario dopo aver aggiunto l'evento
-    Swal.fire('Event added successfully!', '', 'success');
+    Swal.fire("Event added successfully!", "", "success");
   }
 }
 
@@ -558,8 +546,6 @@ async function getDaysInMonth(month, year) {
   return new Date(year, month + 1, 0).getDate();
 }
 
-
-
 async function generateCalendar(month, year) {
   const daysInMonth = await getDaysInMonth(month, year);
   const firstDayOfMonth = new Date(year, month, 1).getDay();
@@ -570,7 +556,10 @@ async function generateCalendar(month, year) {
   const daysOfWeek = ["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"];
 
   // Riordina l'array dei giorni della settimana in base al primo giorno del mese
-  const reorderedDaysOfWeek = [...daysOfWeek.slice(firstDayOfMonth), ...daysOfWeek.slice(0, firstDayOfMonth)];
+  const reorderedDaysOfWeek = [
+    ...daysOfWeek.slice(firstDayOfMonth),
+    ...daysOfWeek.slice(0, firstDayOfMonth),
+  ];
 
   for (let day of reorderedDaysOfWeek) {
     const cell = headerRow.insertCell();
@@ -579,24 +568,28 @@ async function generateCalendar(month, year) {
 
   let date = 1;
   let rowCount = 0;
-  let row = calendarTable.insertRow(); 
+  let row = calendarTable.insertRow();
 
   while (date <= daysInMonth) {
     for (let j = 0; j < 7; j++) {
       const cell = row.insertCell();
       if (date > daysInMonth) {
-        break; 
+        break;
       } else {
         cell.textContent = date;
 
-        const cellDate = new Date(Date.UTC(year, month, date)).toISOString().split("T")[0];
+        const cellDate = new Date(Date.UTC(year, month, date))
+          .toISOString()
+          .split("T")[0];
         const cellEvents = events.filter((event) => event.date === cellDate);
         if (cellEvents.length > 0) {
           // Aggiungi i titoli degli eventi come testo visibile sotto il numero del giorno
-          const eventInfo = cellEvents.map(event => `<b>${event.title}</b>: ${event.description}`).join('<br>');
+          const eventInfo = cellEvents
+            .map((event) => `<b>${event.title}</b>: ${event.description}`)
+            .join("<br>");
           cell.innerHTML += `<br>${eventInfo}`;
-          cell.classList.add('has-events'); // Aggiungi classe per indicare che la cella ha eventi
-          cell.setAttribute('data-date', cellDate); // Aggiungi attributo data con la data della cella
+          cell.classList.add("has-events"); // Aggiungi classe per indicare che la cella ha eventi
+          cell.setAttribute("data-date", cellDate); // Aggiungi attributo data con la data della cella
         }
 
         date++;
@@ -616,17 +609,19 @@ async function generateCalendar(month, year) {
       row.insertCell();
     }
   }
-  
+
   // Aggiungi gestore di eventi per mostrare i dettagli degli eventi al clic sulla cella del calendario
-  calendarTable.addEventListener('click', function(event) {
+  calendarTable.addEventListener("click", function (event) {
     const target = event.target;
     const cellDate = target.dataset.date; // Recupera la data dalla cella
-    if (cellDate && target.classList.contains('has-events')) {
-      const cellEvents = events.filter(event => event.date === cellDate);
-      const eventList = cellEvents.map(event => `<li><b>${event.title}</b>: ${event.description}</li>`).join('');
+    if (cellDate && target.classList.contains("has-events")) {
+      const cellEvents = events.filter((event) => event.date === cellDate);
+      const eventList = cellEvents
+        .map((event) => `<li><b>${event.title}</b>: ${event.description}</li>`)
+        .join("");
       Swal.fire({
-        title: 'Dettagli Eventi',
-        html: `<ul>${eventList}</ul>`
+        title: "Dettagli Eventi",
+        html: `<ul>${eventList}</ul>`,
       });
     }
   });
@@ -646,129 +641,133 @@ async function updateCalendar() {
     await generateCalendar(currentMonth, currentYear)
   );
 }
-function apriCalendario(){
-  if(document.getElementById("boxCalendario").style.display == "none" ){
+function apriCalendario() {
+  if (document.getElementById("boxCalendario").style.display == "none") {
     document.getElementById("boxCalendario").style.display = "block";
     document.getElementById("boxapertura").style.display = "none";
-
-  }
-  else{
+  } else {
     document.getElementById("boxCalendario").style.display = "none";
   }
-  
 }
-function apriNotifiche(){
-
-  let boxapertura = document.getElementById('boxapertura');
-  if(boxapertura.style.display == 'none'){
-    boxapertura.style.display = 'block';
+function apriNotifiche() {
+  let boxapertura = document.getElementById("boxapertura");
+  if (boxapertura.style.display == "none") {
+    boxapertura.style.display = "block";
     document.getElementById("boxCalendario").style.display = "none";
+  } else {
+    boxapertura.style.display = "none";
   }
-  else{
-    boxapertura.style.display = 'none';
-  }
-  }
-function impiccato(){
-  const words = ["javascript", "html", "css", "developer", "programming", "code"];
-let selectedWord = words[Math.floor(Math.random() * words.length)];
-let guessedWord = Array(selectedWord.length).fill('_');
-let remainingAttempts = 6;
-let guessedLetters = [];
-let impiccato = document.getElementById('impiccato');
-impiccato.style.display = 'flex';
-divRisultato.style.display = 'block';
-
-// Inizializza il display della parola all'avvio del gioco
-displayWord();
-
-// Popola l'alfabeto
-populateAlphabet();
-function displayWord() {
-  document.getElementById("word-container").innerText = guessedWord.join(" ");
-
 }
-function guessLetter(letter) {
-  if (guessedLetters.includes(letter)) {
-     //disabilita il pulsante se la lettera è già stata indovinata
+function impiccato() {
+  const words = [
+    "javascript",
+    "html",
+    "css",
+    "developer",
+    "programming",
+    "code",
+  ];
+  let selectedWord = words[Math.floor(Math.random() * words.length)];
+  let guessedWord = Array(selectedWord.length).fill("_");
+  let remainingAttempts = 6;
+  let guessedLetters = [];
+  let impiccato = document.getElementById("impiccato");
+  impiccato.style.display = "flex";
+  divRisultato.style.display = "block";
+
+  // Inizializza il display della parola all'avvio del gioco
+  displayWord();
+
+  // Popola l'alfabeto
+  populateAlphabet();
+  function displayWord() {
+    document.getElementById("word-container").innerText = guessedWord.join(" ");
+  }
+  function guessLetter(letter) {
+    if (guessedLetters.includes(letter)) {
+      //disabilita il pulsante se la lettera è già stata indovinata
 
       Swal.fire("Attenzione!", "Hai già indovinato questa lettera!", "warning");
       return;
-  }
+    }
 
-  guessedLetters.push(letter);
+    guessedLetters.push(letter);
 
-  if (selectedWord.includes(letter)) {
+    if (selectedWord.includes(letter)) {
       for (let i = 0; i < selectedWord.length; i++) {
-          if (selectedWord[i] === letter) {
-              guessedWord[i] = letter;
-          }
+        if (selectedWord[i] === letter) {
+          guessedWord[i] = letter;
+        }
       }
-  } else {
+    } else {
       remainingAttempts--;
       updateHangman();
-  }
+    }
 
-  displayWord();
-  updateGuessedLetters();
+    displayWord();
+    updateGuessedLetters();
 
-  if (guessedWord.join('') === selectedWord) {
-      Swal.fire("Hai vinto!", "Complimenti, hai indovinato la parola!", "success");
+    if (guessedWord.join("") === selectedWord) {
+      Swal.fire(
+        "Hai vinto!",
+        "Complimenti, hai indovinato la parola!",
+        "success"
+      );
       resetGame();
-  } else if (remainingAttempts === 0) {
+    } else if (remainingAttempts === 0) {
       Swal.fire("Hai perso!", `La parola era: ${selectedWord}`, "error");
       resetGame();
+    }
   }
-}
 
-function updateHangman() {
-  const hangmanIndex = 6 - remainingAttempts + 1;
-  if (hangmanIndex >= 1 && hangmanIndex <= 6) {
+  function updateHangman() {
+    const hangmanIndex = 6 - remainingAttempts + 1;
+    if (hangmanIndex >= 1 && hangmanIndex <= 6) {
       const hangman = document.getElementById(`hangman-${hangmanIndex}`);
       if (hangman) {
-           hangman.style.display = 'inline-block';
-       }
-  }
-}
-
-function updateGuessedLetters() {
-  document.getElementById("guessed-letters").innerText = "Lettere dette: " + guessedLetters.join(", ");
-}
-
-function resetGame() {
-  // Nascondi tutti i teschi
-  for (let i = 1; i <= 6; i++) {
-      document.getElementById(`hangman-${i}`).style.display = 'none';
+        hangman.style.display = "inline-block";
+      }
+    }
   }
 
-  selectedWord = words[Math.floor(Math.random() * words.length)];
-  guessedWord = Array(selectedWord.length).fill('_');
-  remainingAttempts = 6;
-  guessedLetters = [];
-  displayWord();
-  updateGuessedLetters();
-  populateAlphabet();
-}
+  function updateGuessedLetters() {
+    document.getElementById("guessed-letters").innerText =
+      "Lettere dette: " + guessedLetters.join(", ");
+  }
 
-function populateAlphabet() {
-  const alphabetContainer = document.getElementById('alphabet-container');
-  alphabetContainer.innerHTML = '';
+  function resetGame() {
+    // Nascondi tutti i teschi
+    for (let i = 1; i <= 6; i++) {
+      document.getElementById(`hangman-${i}`).style.display = "none";
+    }
 
-  const rows = [];
-  for (let letterCode = 97; letterCode <= 122; letterCode++) {
+    selectedWord = words[Math.floor(Math.random() * words.length)];
+    guessedWord = Array(selectedWord.length).fill("_");
+    remainingAttempts = 6;
+    guessedLetters = [];
+    displayWord();
+    updateGuessedLetters();
+    populateAlphabet();
+  }
+
+  function populateAlphabet() {
+    const alphabetContainer = document.getElementById("alphabet-container");
+    alphabetContainer.innerHTML = "";
+
+    const rows = [];
+    for (let letterCode = 97; letterCode <= 122; letterCode++) {
       const letter = String.fromCharCode(letterCode);
-      const alphabetLetter = document.createElement('div');
-      alphabetLetter.classList.add('alphabet-letter');
+      const alphabetLetter = document.createElement("div");
+      alphabetLetter.classList.add("alphabet-letter");
       alphabetLetter.textContent = letter.toUpperCase();
-      alphabetLetter.addEventListener('click', () => guessLetter(letter));
+      alphabetLetter.addEventListener("click", () => guessLetter(letter));
 
       const rowIndex = Math.floor((letterCode - 97) / 9);
-      rows[rowIndex] = rows[rowIndex] || document.createElement('div');
-      rows[rowIndex].classList.add('alphabet-row');
+      rows[rowIndex] = rows[rowIndex] || document.createElement("div");
+      rows[rowIndex].classList.add("alphabet-row");
       rows[rowIndex].appendChild(alphabetLetter);
+    }
+
+    rows.forEach((row) => alphabetContainer.appendChild(row));
   }
-
-  rows.forEach(row => alphabetContainer.appendChild(row));
 }
-}
-
-
