@@ -97,5 +97,43 @@ navigator.geolocation.getCurrentPosition(function(position) {
   console.log("Posizione attuale:", position.coords.latitude, position.coords.longitude);
 });
 ```
+## Guida all’interfaccia
 
+### Pagine dell'applicativo
+
+Il nostro applicativo LAURI è composto dalle seguenti pagine principali:
+
+1. **Home Page:** Introduce l'utente all'assistente vocale LAURI, fornendo una panoramica delle sue capacità e dei vantaggi dell'utilizzo.
+   
+2. **Interfaccia Vocale:** Pagina dedicata all'avvio del riconoscimento vocale e all'interazione diretta con LAURI. Qui gli utenti possono iniziare a utilizzare l'assistente vocale per emettere comandi e ricevere risposte.
+
+3. **Impostazioni:** Pagina dove gli utenti possono personalizzare le preferenze di LAURI, come la lingua preferita, le opzioni di feedback vocale e altre impostazioni avanzate.
+
+### Presentazione delle funzionalità
+
+Le funzionalità di LAURI sono presentate agli utenti in modo chiaro e intuitivo:
+
+- **Tutorial Iniziale:** All'avvio dell'applicazione, gli utenti vengono guidati attraverso un breve tutorial che illustra come avviare il riconoscimento vocale e interagire con LAURI.
+  
+- **Messaggi di Feedback:** Durante l'uso dell'applicazione, vengono forniti messaggi di feedback per informare gli utenti sullo stato del riconoscimento vocale e sulle azioni eseguite da LAURI in risposta ai loro comandi.
+  
+- **Guide Interne:** Ogni pagina dell'applicativo include guide interne e suggerimenti contestuali che aiutano gli utenti a scoprire nuove funzionalità e massimizzare l'efficacia dell'interazione con LAURI.
+
+## Test
+
+### Test Eseguiti
+
+Abbiamo condotto diversi test per garantire la robustezza e l'affidabilità dell'applicazione LAURI:
+
+- **Test di Usabilità:** Abbiamo coinvolto un gruppo di utenti rappresentativi per valutare l'usabilità generale dell'interfaccia vocale di LAURI. I test si sono concentrati sull'esperienza utente durante l'avvio del riconoscimento vocale, la comprensione delle risposte di LAURI e la facilità di navigazione tra le diverse funzionalità dell'applicazione.
+
+- **Test di Performance:** Abbiamo eseguito test per valutare la velocità di risposta di LAURI durante l'elaborazione delle richieste vocali e la sintesi delle risposte. Questo ci ha permesso di ottimizzare i tempi di risposta e migliorare l'efficienza complessiva dell'applicazione.
+
+### Risultati dei Test
+
+Nei nostri test abbiamo rilevato diversi punti di forza e aree di miglioramento per LAURI:
+
+- **Punti di Forza:** Gli utenti hanno apprezzato l'accuratezza del riconoscimento vocale di LAURI e la chiarezza delle risposte fornite. In particolare, la capacità di integrarsi con dispositivi esterni e servizi online è stata ben recepita dagli utenti.
+
+- **Aree di Miglioramento:** Abbiamo identificato alcune situazioni in cui LAURI ha avuto difficoltà nel riconoscere comandi vocali complessi o in ambienti con rumore di fondo elevato. Stiamo lavorando per migliorare questi aspetti attraverso aggiornamenti software e ottimizzazioni delle API utilizzate.
 

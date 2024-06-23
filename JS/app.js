@@ -16,6 +16,7 @@ const cells = [];
 let countdown;
 let calendarContainer = document.getElementById("calendar");
 let boxCalendario = document.getElementById("boxCalendario");
+let events = [];
 
 // function loadVoicesWhenAvailable(onComplete = () => {}) {
 //   _speechSynth = window.speechSynthesis;
@@ -50,6 +51,18 @@ window.onload = async function () {
   } else {
     alert("La geo-localizzazione NON Ã¨ possibile");
   }
+  const savedEvents = localStorage.getItem("calendarEvents");
+  if (savedEvents) {
+    events = JSON.parse(savedEvents);
+    //updateCalendar();
+  }
+
+  // Carica i promemoria dal localStorage
+  const savedPromemoria = localStorage.getItem("promemoria");
+  if (savedPromemoria) {
+    addPromemoria(savedPromemoria);
+  }
+
   icLuna.addEventListener("click", temaScuro);
   icSole.addEventListener("click", temaChiaro);
   icMail.addEventListener("click", apriNotifiche);
@@ -62,9 +75,6 @@ window.onload = async function () {
   const calendar = await generateCalendar(currentMonth, currentYear);
 
   boxCalendario.appendChild(calendar);
-
-  addPromemoria("Prova Prom");
-  //addPromemoria("Promemoria 2");
 };
 
 startListeningButton.addEventListener("click", () => {
@@ -295,6 +305,55 @@ async function handleVoiceCommand(command) {
   ) {
     let promDaaggiungere = command.split("promemoria")[1].trim();
     addPromemoria("PROMEMORIA -> " + promDaaggiungere);
+  } else if (command.includes("riproduci")) {
+    let search = command.replace("riproduci", "");
+    search = search.trim();
+    divRisultato.style.display = "block";
+    //uso come src https://ma-srv.mooo.com/spotidlapi/?q= + search e metto il risultato in un tag audio html
+    const audio = new Audio();
+    audio.src = "https://ma-srv.mooo.com/spotidlapi/?q=" + search;
+    audio.controls = true;
+    audio.autoplay = true;
+    audio.muted = true;
+    divRisultato.appendChild(audio);
+  } else if (command.includes("traduci")) {
+    let search = command.replace("traduci", "");
+
+    let targetLang = "en";
+    if (command.includes("inglese")) {
+      targetLang = "en";
+    } else if (command.includes("spagnolo")) {
+      targetLang = "es";
+    } else if (command.includes("francese")) {
+      targetLang = "fr";
+    } else if (command.includes("tedesco")) {
+      targetLang = "de";
+    } else if (command.includes("russo")) {
+      targetLang = "ru";
+    } else if (command.includes("giapponese")) {
+      targetLang = "ja";
+    } else if (command.includes("cinese")) {
+      targetLang = "zh-CN";
+    }
+
+    search = search.split("in")[0].trim();
+    console.log(search);
+    var sourceLang = "it";
+    var url =
+      "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" +
+      sourceLang +
+      "&tl=" +
+      targetLang +
+      "&dt=t&q=" +
+      encodeURIComponent(search);
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data[0][0][0]);
+        respond("Traduzione: " + data[0][0][0]);
+      })
+      .catch((error) => console.error("Error:", error));
   } else {
     await respond("Non ho capito. Riprova.");
   }
@@ -365,6 +424,7 @@ function temaScuro() {
   document.getElementById("icCalendario").style.color = "white";
   document.getElementById("boxCalendario").style.color = "black";
   document.getElementById("container").style.color = "black";
+  document.getElementById("impiccato").style.color = "black";
 }
 function temaChiaro() {
   document.body.style.backgroundColor = "#fefcfe";
@@ -379,6 +439,7 @@ function temaChiaro() {
   document.getElementById("icCalendario").style.color = "black";
   document.getElementById("boxCalendario").style.color = "black";
   document.getElementById("container").style.color = "black";
+  document.getElementById("impiccato").style.color = "black";
 }
 function tris() {
   const tris = document.getElementById("tris");
@@ -470,11 +531,14 @@ function addPromemoria(testoProm) {
   let notifica = document.getElementById("notifica");
   let div = document.createElement("div");
   div.classList.add("not");
-  //let boxapertura = document.getElementById('boxapertura');
+
   let pProm = document.createElement("p");
   pProm.innerText = testoProm;
   div.appendChild(pProm);
   notifica.appendChild(div);
+
+  // Salva i promemoria nel localStorage
+  saveDataToLocalStorage("promemoria", testoProm);
 }
 function getOreMinutiSecondi(inputString) {
   let ore = 0;
@@ -530,17 +594,20 @@ async function aggiungiEvento() {
     const [date, title, description] = formValues;
     await addEvent(date, title, description);
     await updateCalendar(); // Aggiorna il calendario dopo aver aggiunto l'evento
-    Swal.fire("Event added successfully!", "", "success");
+    Swal.fire("Evento aggiunto con successo!", "", "success");
   }
 }
 
 async function addEvent(date, title, description) {
   const utcDate = new Date(date + "T00:00:00Z").toISOString().split("T")[0];
-
   events.push({ date: utcDate, title, description });
-}
 
-let events = [];
+  // Salva gli eventi nel localStorage
+  saveDataToLocalStorage("calendarEvents", events);
+}
+function saveDataToLocalStorage(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
+}
 
 async function getDaysInMonth(month, year) {
   return new Date(year, month + 1, 0).getDate();

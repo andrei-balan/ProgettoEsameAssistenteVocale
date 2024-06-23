@@ -146,13 +146,15 @@ h2 {
   display: none;
 
 }
-#tris{
+
+#tris {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   display: none;
 }
+
 #calendar-container {
   display: flex;
   justify-content: center;
@@ -161,6 +163,7 @@ h2 {
 
 
 }
+
 #calendar {
   display: block;
   width: 40vw;
@@ -178,18 +181,20 @@ td {
 td:hover {
   background-color: #f0f0f0;
 }
+
 #calendar {
   display: none;
- 
+
 }
+
 .calendar {
   align-items: center;
   justify-content: center;
   border-collapse: collapse;
   margin: 0px auto;
   width: 40vw;
-  
-  
+
+
 
 }
 
@@ -211,24 +216,26 @@ td:hover {
 .calendar td:hover {
   background-color: #f0f0f0;
 }
-#icCalendario{
+
+#icCalendario {
   position: absolute;
   height: 3em;
   left: 60px;
 }
 
-  input[type="text"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    outline: none;
-    transition: border-color 0.3s ease-in-out;
-  }
+input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+}
 
-  input[type="text"]:focus {
-    border-color: #00bcd4;
-  }
+input[type="text"]:focus {
+  border-color: #00bcd4;
+}
+
 textarea {
   padding: 10px;
   border: 1px solid #ccc;
@@ -240,6 +247,7 @@ textarea {
   height: 200px;
   margin-top: 20px;
 }
+
 input[type="date"] {
   padding: 10px;
   border: 1px solid #ccc;
@@ -252,7 +260,8 @@ input[type="date"] {
 input[type="date"]:focus {
   border-color: #00bcd4;
 }
-#btnAggiungiEvento{
+
+#btnAggiungiEvento {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -260,5 +269,30 @@ input[type="date"]:focus {
   height: 50px;
   border-radius: 20px;
   background: rgb(202 253 255 / 50%);
-  
+
+}
+
+audio:hover,
+audio:focus,
+audio:active {
+  -webkit-box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.4);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+
+audio {
+  -webkit-transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+  -moz-box-shadow: 2px 2px 4px 0px #006773;
+  -webkit-box-shadow: 2px 2px 4px 0px #006773;
+  box-shadow: 2px 2px 4px 0px #006773;
+  -moz-border-radius: 7px 7px 7px 7px;
+  -webkit-border-radius: 7px 7px 7px 7px;
+  border-radius: 7px 7px 7px 7px;
 }
